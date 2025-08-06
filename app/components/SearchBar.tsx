@@ -10,6 +10,7 @@ export default function SearchBar({ onSearch }: Props) {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+
     onSearch(value.trim());
   };
 
