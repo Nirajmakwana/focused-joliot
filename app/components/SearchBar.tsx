@@ -18,9 +18,9 @@ export default function SearchBar({ onSearch }: Props) {
       <input
         type="text"
         placeholder="Search movies or series..."
+        className="p-2 border rounded w-full text-gray-800  dark:text-gray-700"
         value={value}
         onChange={(e) => setValue(e.target.value)}
-        className="p-2 border rounded w-full text-gray-800  dark:text-gray-700"
       />
       <button
         type="submit"
