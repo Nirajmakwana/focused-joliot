@@ -1,17 +1,25 @@
+export const dynamic = "force-dynamic";
+
 import { getMovieDetails } from "@/lib/api";
 import { MovieDetails } from "@/types/movie";
-interface PageProps {
-  params: { id: string };
-}
+import Image from "next/image";
 
-export default async function MovieDetailsPage({ params }: PageProps) {
+export default async function MovieDetailsPage({
+  params,
+}: {
+  params: { id: string };
+}) {
   const movie: MovieDetails = await getMovieDetails(params.id);
 
   return (
     <div className="p-4 max-w-4xl mx-auto">
       <div className="flex flex-col md:flex-row gap-6">
-        <img
-          src={movie.Poster !== "N/A" ? movie.Poster : "/no-image.jpg"}
+        <Image
+          src={
+            movie.Poster !== "N/A"
+              ? movie.Poster
+              : "https://www.google.com/url?sa=i&url=https%3A%2F%2Fen.ac-illust.com%2Fclip-art%2F25480354%2Fno-image-thumbnail-1-with-no-image&psig=AOvVaw1pop-yY3LTf1e5OIu8QKE3&ust=1754565224385000&source=images&cd=vfe&opi=89978449&ved=0CBIQjRxqFwoTCLC-_qWH9o4DFQAAAAAdAAAAABAE"
+          }
           alt={movie.Title}
           className="w-full md:w-60 rounded shadow"
         />
