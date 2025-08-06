@@ -20,13 +20,13 @@ export default function HomePage() {
     setQuery(q);
     setPage(1);
   };
-
+  useEffect(() => {
   const fetchResults = async () => {
     if (!query) return;
     setLoading(true);
     try {
       const data = await searchMovies(query, page, type, year);
-      if (data.Response === "True") {
+      if (data.Response === 'True') {
         setResults(data.Search);
         setTotalResults(parseInt(data.totalResults));
       } else {
@@ -34,15 +34,15 @@ export default function HomePage() {
         setTotalResults(0);
       }
     } catch (err) {
-      console.error("Fetch error:", err);
+      console.error('Fetch error:', err);
       setResults([]);
     }
     setLoading(false);
   };
 
-  useEffect(() => {
-    fetchResults();
-  }, [query, page, type, year, fetchResults]);
+  fetchResults();
+}, [query, page, type, year]);
+
 
   return (
     <div className="p-4 max-w-6xl mx-auto">

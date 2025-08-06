@@ -4,11 +4,13 @@ import { getMovieDetails } from "@/lib/api";
 import { MovieDetails } from "@/types/movie";
 import Image from "next/image";
 
-export default async function MovieDetailsPage({
-  params,
-}: {
-  params: { id: string };
-}) {
+type PageProps = {
+  params: {
+    id: string;
+  };
+};
+
+export default async function MovieDetailsPage({ params }: PageProps) {
   const movie: MovieDetails = await getMovieDetails(params.id);
 
   return (
