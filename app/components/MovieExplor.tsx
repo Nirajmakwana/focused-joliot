@@ -1,20 +1,20 @@
-"use client"
-import { useEffect, useState } from 'react';
-import SearchBar from './SearchBar';
-import { searchMovies } from '../../lib/api';
-import type { Movie } from '../../types/movie';
-import MovieCard from './MovieCard';
-import Pagination from './Pagination';
-import Filters from './Filters';
+"use client";
+import { useEffect, useState } from "react";
+import SearchBar from "./SearchBar";
+import { searchMovies } from "../../lib/api";
+import type { Movie } from "../../types/movie";
+import MovieCard from "./MovieCard";
+import Pagination from "./Pagination";
+import Filters from "./Filters";
 
 export default function HomePage() {
-  const [query, setQuery] = useState('');
+  const [query, setQuery] = useState("");
   const [results, setResults] = useState<Movie[]>([]);
   const [loading, setLoading] = useState(false);
   const [page, setPage] = useState(1);
   const [totalResults, setTotalResults] = useState(0);
-  const [type, setType] = useState('');
-  const [year, setYear] = useState('');
+  const [type, setType] = useState("");
+  const [year, setYear] = useState("");
 
   const handleSearch = async (q: string) => {
     setQuery(q);
@@ -26,7 +26,7 @@ export default function HomePage() {
     setLoading(true);
     try {
       const data = await searchMovies(query, page, type, year);
-      if (data.Response === 'True') {
+      if (data.Response === "True") {
         setResults(data.Search);
         setTotalResults(parseInt(data.totalResults));
       } else {
@@ -34,7 +34,7 @@ export default function HomePage() {
         setTotalResults(0);
       }
     } catch (err) {
-      console.error('Fetch error:', err);
+      console.error("Fetch error:", err);
       setResults([]);
     }
     setLoading(false);
@@ -42,7 +42,7 @@ export default function HomePage() {
 
   useEffect(() => {
     fetchResults();
-  }, [query, page, type, year]);
+  }, [query, page, type, year, fetchResults]);
 
   return (
     <div className="p-4 max-w-6xl mx-auto">
@@ -54,13 +54,9 @@ export default function HomePage() {
       ) : results.length > 0 ? (
         <div>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-6">
-            {results.map((movie,index) =>{
-                
-                return(
-                    <MovieCard key={movie.imdbID+index} movie={movie} />
-                )
-            } 
-            )}
+            {results.map((movie, index) => {
+              return <MovieCard key={movie.imdbID + index} movie={movie} />;
+            })}
           </div>
           <Pagination
             currentPage={page}
@@ -70,7 +66,7 @@ export default function HomePage() {
         </div>
       ) : query ? (
         <div>
-            <p className="mt-8">No results found.</p>
+          <p className="mt-8">No results found.</p>
         </div>
       ) : null}
     </div>

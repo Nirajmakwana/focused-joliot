@@ -1,7 +1,5 @@
-import { getMovieDetails } from '@/lib/api';
-import { MovieDetails } from '@/types/movie';
-import Image from 'next/image';
-
+import { getMovieDetails } from "@/lib/api";
+import { MovieDetails } from "@/types/movie";
 interface PageProps {
   params: { id: string };
 }
@@ -13,7 +11,7 @@ export default async function MovieDetailsPage({ params }: PageProps) {
     <div className="p-4 max-w-4xl mx-auto">
       <div className="flex flex-col md:flex-row gap-6">
         <img
-          src={movie.Poster !== 'N/A' ? movie.Poster : '/no-image.jpg'}
+          src={movie.Poster !== "N/A" ? movie.Poster : "/no-image.jpg"}
           alt={movie.Title}
           className="w-full md:w-60 rounded shadow"
         />
@@ -26,14 +24,30 @@ export default async function MovieDetailsPage({ params }: PageProps) {
           <p className="mb-4">{movie.Plot}</p>
 
           <ul className="space-y-1 text-sm">
-            <li><strong>Genre:</strong> {movie.Genre}</li>
-            <li><strong>Director:</strong> {movie.Director}</li>
-            <li><strong>Actors:</strong> {movie.Actors}</li>
-            <li><strong>Language:</strong> {movie.Language}</li>
-            <li><strong>Country:</strong> {movie.Country}</li>
-            <li><strong>Awards:</strong> {movie.Awards}</li>
-            <li><strong>IMDb Rating:</strong> {movie.imdbRating}</li>
-            <li><strong>Released:</strong> {movie.Released}</li>
+            <li>
+              <strong>Genre:</strong> {movie.Genre}
+            </li>
+            <li>
+              <strong>Director:</strong> {movie.Director}
+            </li>
+            <li>
+              <strong>Actors:</strong> {movie.Actors}
+            </li>
+            <li>
+              <strong>Language:</strong> {movie.Language}
+            </li>
+            <li>
+              <strong>Country:</strong> {movie.Country}
+            </li>
+            <li>
+              <strong>Awards:</strong> {movie.Awards}
+            </li>
+            <li>
+              <strong>IMDb Rating:</strong> {movie.imdbRating}
+            </li>
+            <li>
+              <strong>Released:</strong> {movie.Released}
+            </li>
           </ul>
         </div>
       </div>
